@@ -139,6 +139,7 @@
     </Compile>
     <Compile Include="Models\Character.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\MarvelAPIUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
