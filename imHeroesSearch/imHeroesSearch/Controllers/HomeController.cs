@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using imHeroesSearch.Util;
 using imHeroesSearch.Models;
+using Newtonsoft.Json;
+using System.Web.Configuration;
 
 namespace imHeroesSearch.Controllers
 {
@@ -16,22 +18,23 @@ namespace imHeroesSearch.Controllers
 
         public HomeController()
         {
-            _Marvel.publicKey = ConfigurationManager.AppSettings["MarvelAPIKey"];
-            _Marvel.privateKey = ConfigurationManager.AppSettings["MarvelAPIPrivateKey"];
-            _Marvel.baseURL = ConfigurationManager.AppSettings["MarvelAPIBaseURL"];
+            _Marvel.PublicKey = ConfigurationManager.AppSettings["MarvelAPIKey"];
+            _Marvel.PrivateKey = ConfigurationManager.AppSettings["MarvelAPIPrivateKey"];
+            _Marvel.BaseURL = ConfigurationManager.AppSettings["MarvelAPIBaseURL"];
+            _Marvel.Client = new HttpClient();
         }
 
         public ActionResult Index()
         {
-            using (var client = new HttpClient())
+            using (var client = _Marvel.Client)
             {
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                string hash = MarvelAPIUtil.GetHash(DateTime.Now.Ticks.ToString(), _PublicKey, _PrivateKey);
+                Character obj = new Character();
+                string json = JsonConvert.SerializeObject(obj.GetCharacterById(_Marvel, 1009220));
 
-
+                ViewBag.Json = json;
             }
-
             return View();
         }
     }

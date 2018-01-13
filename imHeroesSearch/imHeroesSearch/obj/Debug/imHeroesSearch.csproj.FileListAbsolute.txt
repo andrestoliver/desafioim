@@ -44,3 +44,5 @@ C:\desafio\imHeroesSearch\imHeroesSearch\bin\System.Web.Mvc.xml
 C:\desafio\imHeroesSearch\imHeroesSearch\obj\Debug\imHeroesSearch.csprojResolveAssemblyReference.cache
 C:\desafio\imHeroesSearch\imHeroesSearch\obj\Debug\imHeroesSearch.dll
 C:\desafio\imHeroesSearch\imHeroesSearch\obj\Debug\imHeroesSearch.pdb
+C:\desafio\imHeroesSearch\imHeroesSearch\bin\Newtonsoft.Json.dll
+C:\desafio\imHeroesSearch\imHeroesSearch\bin\Newtonsoft.Json.xml
