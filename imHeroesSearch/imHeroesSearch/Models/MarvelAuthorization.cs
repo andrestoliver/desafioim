@@ -6,11 +6,12 @@ using System.Web;
 
 namespace imHeroesSearch.Models
 {
-    public class MarvelAPI
+    public class MarvelAuthorization
     {
         public string PublicKey { get; set; }
         public string PrivateKey { get; set; }
         public string BaseURL { get; set; }
-        public HttpClient Client { get; set; }
+        public string Hash { get; set; }
+        public string Ts { get; set; }
     }
 }

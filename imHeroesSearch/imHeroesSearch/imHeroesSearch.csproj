@@ -152,7 +152,7 @@
     </Compile>
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\Comic.cs" />
-    <Compile Include="Models\MarvelAPI.cs" />
+    <Compile Include="Models\MarvelAuthorization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\MarvelAPIUtil.cs" />
   </ItemGroup>

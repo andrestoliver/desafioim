@@ -28,9 +28,10 @@ li.dropdown.open .dropdown-menu {
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="ddHeroes">
-                                <li><a href="#">Cap. America</a></li>
-                                <li><a href="#">Hulk</a></li>
-                                <li><a href="#">Hawk Eye</a></li>
+                                @foreach (imHeroesSearch.Models.Character item in ViewBag.Characters)
+                                {
+                                    <li><a href="#">@item.Name</a></li>
+                                }
                             </ul>
                         </div>
                     </div>
