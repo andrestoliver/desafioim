@@ -1,4 +1,5 @@
-﻿using System;
+﻿using imHeroesSearch.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -15,6 +16,11 @@ namespace imHeroesSearch.Util
             var generator = MD5.Create();
             byte[] bytesHash = generator.ComputeHash(bytes);
             return BitConverter.ToString(bytesHash).ToLower().Replace("-", String.Empty);
+        }
+
+        public Character GetCharacterByName()
+        {
+            return new Character();
         }
     }
 }

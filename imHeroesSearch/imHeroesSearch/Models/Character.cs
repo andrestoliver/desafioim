@@ -17,19 +17,20 @@ namespace imHeroesSearch.Models
         public List<Comic> Comics { get; set; }
 
         public Character GetCharacterById(MarvelAPI marvel, int id){
-            string hash = MarvelAPIUtil.GetHash(DateTime.Now.Ticks.ToString(), marvel.PublicKey, marvel.PrivateKey);
-            string requestURL = string.Format("{0}characters?ts={1}&apikey={2}&hash={3}&id={4}", marvel.BaseURL, marvel.PublicKey, hash, id);
-            Character character = new Character();
-
+            string ts = DateTime.Now.Ticks.ToString();
+            string hash = MarvelAPIUtil.GetHash(ts, marvel.PublicKey, marvel.PrivateKey);
+            string requestURL = string.Format("{0}characters?ts={1}&apikey={2}&hash={3}&id={4}", marvel.BaseURL, ts,marvel.PublicKey, hash, id);
             HttpResponseMessage response = marvel.Client.GetAsync(requestURL).Result;
             response.EnsureSuccessStatusCode();
+
             string content = response.Content.ReadAsStringAsync().Result;
             dynamic result = JsonConvert.DeserializeObject(content);
+            Character character = new Character();
 
-            character.Name = result.data.results[0].id;
+            character.Id = result.data.results[0].id;
             character.Name = result.data.results[0].name;
             character.Description = result.data.results[0].description;
-            character.Description = result.data.results[0].thumbnail.path + "." + result.data.results[0].thumbnail.extension;
+            character.ThumbnailURL = result.data.results[0].thumbnail.path + "." + result.data.results[0].thumbnail.extension;
             
             return character;
         }

@@ -18,23 +18,24 @@ namespace imHeroesSearch.Controllers
 
         public HomeController()
         {
-            //_Marvel.PublicKey = ConfigurationManager.AppSettings["MarvelAPIKey"];
-            //_Marvel.PrivateKey = ConfigurationManager.AppSettings["MarvelAPIPrivateKey"];
-            //_Marvel.BaseURL = ConfigurationManager.AppSettings["MarvelAPIBaseURL"];
-            //_Marvel.Client = new HttpClient();
+            _Marvel = new MarvelAPI();
+            _Marvel.PublicKey = ConfigurationManager.AppSettings["marvel:APIKey"];
+            _Marvel.PrivateKey = ConfigurationManager.AppSettings["marvel:APIPrivateKey"];
+            _Marvel.BaseURL = ConfigurationManager.AppSettings["marvel:APIBaseURL"];
+            _Marvel.Client = new HttpClient();
         }
 
         public ActionResult Index()
         {
-            //using (var client = _Marvel.Client)
-            //{
-            //    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            using (var client = _Marvel.Client)
+            {
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-            //    Character obj = new Character();
-            //    string json = JsonConvert.SerializeObject(obj.GetCharacterById(_Marvel, 1009220));
+                Character obj = new Character();
+                string json = JsonConvert.SerializeObject(obj.GetCharacterById(_Marvel, 1009220));
 
-            //    ViewBag.Json = json;
-            //}
+                ViewBag.Json = json;
+            }
             return View();
         }
     }
