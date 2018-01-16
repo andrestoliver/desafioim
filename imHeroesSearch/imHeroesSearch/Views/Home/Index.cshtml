@@ -2,7 +2,98 @@
 @{
     ViewBag.Title = "Desafio Marvel";
 }
+<style>
+li.dropdown.open {
+    position: static;
+}
+li.dropdown.open .dropdown-menu {
+    display:table; width: 100%; text-align: center; left:0; right:0;
+}
+.dropdown-menu>li {
+    display: table-cell;
+}
+</style>
 
-<h2>Desafio Marvel</h2>
-@ViewBag.Json
+<div class="row">
+    <div class="col-md-4">
+        <h1>Desafio Marvel</h1>
+        <form>
+            <div class="row">
+                <div class="col-md-12" ">
+                    <div class="form-group">
+                        <label for="ddHeroes">Super Herói</label>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="ddHeroes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Selecione
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="ddHeroes">
+                                <li><a href="#">Cap. America</a></li>
+                                <li><a href="#">Hulk</a></li>
+                                <li><a href="#">Hawk Eye</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="ddComic">História</label>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="ddComic" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Selecione
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="ddComic">
+                                <li><a href="#">Cap. America</a></li>
+                                <li><a href="#">Hulk</a></li>
+                                <li><a href="#">Hawk Eye</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <button class="form-control">
+                        Pesquisar
+                    </button>
+                </div>
+                <div class="col-md-3">
+                    <button class="form-control">
+                        Limpar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-7" style="background-color:aqua;">
+                <div class="row">
+                    <!--IMAGEM-->
+                </div>
+            </div>
+            <div class="col-md-5" style="background-color:aquamarine;">
+                <div class="row">
+                    <!--DESCRIÇÃO-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-6">
+                <!--CAPA DA HQ-->
+            </div>
+            <div class="col-md-6">
+                <!--DESCRIÇÂO DA HQ-->
+            </div>
+        </div>
+    </div>
+</div>
+
 
