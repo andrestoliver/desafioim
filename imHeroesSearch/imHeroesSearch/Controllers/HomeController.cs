@@ -16,9 +16,19 @@ namespace imHeroesSearch.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Characters = MarvelAPIUtil.GetCharacters();
+            //ViewBag.Characters = MarvelAPIUtil.GetCharacters();
 
-            return View();
+            return View(MarvelAPIUtil.GetCharacters());
+        }
+
+        public JsonResult GetComics(int id)
+        {
+            var json = new
+            {
+                sucess = true
+            };
+
+            return Json(json, JsonRequestBehavior.AllowGet);
         }
     }
 }

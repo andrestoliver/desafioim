@@ -1,25 +1,14 @@
-﻿
+﻿@model IEnumerable<imHeroesSearch.Models.Character>
 @{
     ViewBag.Title = "Desafio Marvel";
 }
-<style>
-li.dropdown.open {
-    position: static;
-}
-li.dropdown.open .dropdown-menu {
-    display:table; width: 100%; text-align: center; left:0; right:0;
-}
-.dropdown-menu>li {
-    display: table-cell;
-}
-</style>
 
 <div class="row">
     <div class="col-md-4">
         <h1>Desafio Marvel</h1>
         <form>
             <div class="row">
-                <div class="col-md-12" ">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label for="ddHeroes">Super Herói</label>
                         <div class="dropdown">
@@ -28,9 +17,9 @@ li.dropdown.open .dropdown-menu {
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="ddHeroes">
-                                @foreach (imHeroesSearch.Models.Character item in ViewBag.Characters)
+                                @foreach (var item in Model)
                                 {
-                                    <li><a href="#">@item.Name</a></li>
+                                    <li><a href="#" data-id="@item.Id">@item.Name</a></li>
                                 }
                             </ul>
                         </div>
@@ -97,4 +86,30 @@ li.dropdown.open .dropdown-menu {
     </div>
 </div>
 
+<script>
+    $(function () {
+        function log(message) {
+            $("<div>").text(message).prependTo("#log");
+            $("#log").scrollTop(0);
+        }
 
+        $("#birds").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "search.php",
+                    dataType: "jsonp",
+                    data: {
+                        term: request.term
+                    },
+                    success: function (data) {
+                        response(data);
+                    }
+                });
+            },
+            minLength: 2,
+            select: function (event, ui) {
+                log("Selected: " + ui.item.value + " aka " + ui.item.id);
+            }
+        });
+    });
+</script>
