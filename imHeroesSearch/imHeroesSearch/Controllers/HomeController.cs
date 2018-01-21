@@ -21,26 +21,29 @@ namespace imHeroesSearch.Controllers
             return View(MarvelAPIUtil.GetCharacters());
         }
 
+        [HttpGet]
         public JsonResult GetComics(int id)
         {
-            var json = new
-            {
-                sucess = true
-            };
+            List<ComicResponse> response = new List<ComicResponse>();
 
-            return Json(json, JsonRequestBehavior.AllowGet);
+            foreach (Comic item in MarvelAPIUtil.GetComics(id, 6, 0))
+            {
+                ComicResponse responseItem = new ComicResponse();
+
+                responseItem.Comic = item;
+                responseItem.Total = 6;
+                responseItem.ItemNumber = 1;
+
+                response.Add(responseItem);
+            }
+
+            return Json(response, JsonRequestBehavior.AllowGet);
         }
+
         [HttpGet]
         public JsonResult GetCharacters(string term)
         {
-            var json = from x in MarvelAPIUtil.GetCharactersByText(term)
-                       select new
-                       {
-                           name = x.Name,
-                           id = x.Id
-                       };
-
-            return Json(json, JsonRequestBehavior.AllowGet);
+            return Json(MarvelAPIUtil.GetCharactersByText(term), JsonRequestBehavior.AllowGet);
         }
     }
 }
