@@ -74,6 +74,34 @@ namespace imHeroesSearch.Util
             return characters;
         }
 
+        public static List<Character> GetCharactersByText(string text)
+        {
+            List<Character> characters = new List<Character>();
+            MarvelAuthorization auth = GetAuthorizationParams();
+
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                string requestURL = string.Format("{0}characters?ts={1}&apikey={2}&hash={3}&nameStartsWith={4}&limit=100", auth.BaseURL, auth.Ts, auth.PublicKey, auth.Hash, text);
+                HttpResponseMessage response = client.GetAsync(requestURL).Result;
+                response.EnsureSuccessStatusCode();
+
+                string content = response.Content.ReadAsStringAsync().Result;
+                dynamic result = JsonConvert.DeserializeObject(content);
+
+                foreach (dynamic item in result.data.results)
+                {
+                    Character character = new Character();
+                    character.Id = item.id;
+                    character.Name = item.name;
+                    character.Description = item.description;
+                    character.ThumbnailURL = item.thumbnail.path + "." + item.thumbnail.extension;
+                    characters.Add(character);
+                }
+            }
+            return characters;
+        }
+
         public static MarvelAuthorization GetAuthorizationParams()
         {
             MarvelAuthorization result = new MarvelAuthorization();

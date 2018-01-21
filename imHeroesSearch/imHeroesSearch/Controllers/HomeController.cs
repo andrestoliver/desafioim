@@ -30,5 +30,17 @@ namespace imHeroesSearch.Controllers
 
             return Json(json, JsonRequestBehavior.AllowGet);
         }
+        [HttpGet]
+        public JsonResult GetCharacters(string term)
+        {
+            var json = from x in MarvelAPIUtil.GetCharactersByText(term)
+                       select new
+                       {
+                           name = x.Name,
+                           id = x.Id
+                       };
+
+            return Json(json, JsonRequestBehavior.AllowGet);
+        }
     }
 }

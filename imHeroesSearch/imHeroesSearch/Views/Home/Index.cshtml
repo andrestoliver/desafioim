@@ -3,112 +3,140 @@
     ViewBag.Title = "Desafio Marvel";
 }
 
-<div class="row">
-    <div class="col-md-4">
+<div class="row"> <!--Título-->
+    <div class="col-xs-12 col-sm-8 col-md-6">
         <h1>Desafio Marvel</h1>
-        <form>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="ddHeroes">Super Herói</label>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="ddHeroes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                Selecione
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="ddHeroes">
-                                @foreach (var item in Model)
-                                {
-                                    <li><a href="#" data-id="@item.Id">@item.Name</a></li>
-                                }
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="ddComic">História</label>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="ddComic" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                Selecione
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="ddComic">
-                                <li><a href="#">Cap. America</a></li>
-                                <li><a href="#">Hulk</a></li>
-                                <li><a href="#">Hawk Eye</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <button class="form-control">
-                        Pesquisar
-                    </button>
-                </div>
-                <div class="col-md-3">
-                    <button class="form-control">
-                        Limpar
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="col-md-8">
-        <div class="row">
-            <div class="col-md-7" style="background-color:aqua;">
-                <div class="row">
-                    <!--IMAGEM-->
-                </div>
-            </div>
-            <div class="col-md-5" style="background-color:aquamarine;">
-                <div class="row">
-                    <!--DESCRIÇÃO-->
-                </div>
-            </div>
-        </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-12">
+<div class="row"> <!--Form de busca e Info do herói-->
+    <div class="col-xs-12 col-sm-12 col-md-7"> <!--Form-->
         <div class="row">
-            <div class="col-md-6">
-                <!--CAPA DA HQ-->
+            <form class="form-inline">
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <label for="txtCharacter">Nome</label>
+                    <input type="text" class="form-control" id="txCharacter" placeholder="Selecione" />
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <button type="button" class="form-control" data-toggle="modal" data-target="#modalLetters">Por Letra</button>
+                </div>
+            </form>
+        </div>
+    </div> 
+    <div class="col-xs-12 col-sm-12 col-md-5"> <!--Info heróis-->
+
+    </div> 
+</div>
+<div class="row"> <!-- Revistas -->
+
+</div>
+
+<div id="modalLetters" class="modal fade" role="dialog" tabindex="-1"> <!--Modal de buscar por letra-->
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Buscar por letra</h4>
             </div>
-            <div class="col-md-6">
-                <!--DESCRIÇÂO DA HQ-->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination pagination-sm">
+                                <li>
+                                    <a href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li><a href="#">A</a></li>
+                                <li><a href="#">B</a></li>
+                                <li><a href="#">C</a></li>
+                                <li><a href="#">D</a></li>
+                                <li><a href="#">E</a></li>
+                                <li><a href="#">F</a></li>
+                                <li><a href="#">G</a></li>
+                                <li><a href="#">H</a></li>
+                                <li><a href="#">I</a></li>
+                                <li><a href="#">J</a></li>
+                                <li><a href="#">K</a></li>
+                                <li><a href="#">L</a></li>
+                                <li><a href="#">M</a></li>
+                                <li><a href="#">N</a></li>
+                                <li><a href="#">O</a></li>
+                                <li><a href="#">P</a></li>
+                                <li><a href="#">Q</a></li>
+                                <li><a href="#">R</a></li>
+                                <li><a href="#">S</a></li>
+                                <li><a href="#">T</a></li>
+                                <li><a href="#">U</a></li>
+                                <li><a href="#">V</a></li>
+                                <li><a href="#">W</a></li>
+                                <li><a href="#">X</a></li>
+                                <li><a href="#">Y</a></li>
+                                <li><a href="#">Z</a></li>
+                                <li>
+                                    <a href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                                <tr>Nome</tr>
+                            </thead>
+                            <tbody>
+                                <tr>Captian America</tr>
+                                <tr>Iron Man</tr>
+                                <tr>Black Widow</tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    $(function () {
-        function log(message) {
-            $("<div>").text(message).prependTo("#log");
-            $("#log").scrollTop(0);
-        }
-
-        $("#birds").autocomplete({
+    $(document).ready(function () {
+        
+        $('#txCharacter').autocomplete({
             source: function (request, response) {
                 $.ajax({
-                    url: "search.php",
-                    dataType: "jsonp",
-                    data: {
-                        term: request.term
-                    },
+                    url: "@Url.Action("GetCharacters", "Home")",
+                    type: 'GET',
+                    cache: false,
+                    data: request,
+                    dataType: "json",
                     success: function (data) {
-                        response(data);
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.name,
+                                value: item.name,
+                                id: item.id
+                            };
+                        }));
                     }
                 });
             },
-            minLength: 2,
+            minLength: 3,
             select: function (event, ui) {
-                log("Selected: " + ui.item.value + " aka " + ui.item.id);
+                $('#txCharacter').val(ui.item.label);
+                alert(ui.item.id)
+                return false;
+            },
+            open: function () {
+                $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+            },
+            close: function () {
+                $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
             }
         });
     });
