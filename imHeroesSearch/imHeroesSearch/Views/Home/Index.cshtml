@@ -164,16 +164,6 @@
 
                 $('#comicsContainer').html(html);
 
-                //var maxHeight = "0px";
-                //$('.box-comic .thumbnail').each(function () {
-                //    $this = $(this);
-                //    if ($this.css('height') > maxHeight) {
-                //        maxHeight = $this.css('height');
-                //    }
-                //});
-
-                //$('.box-comic .thumbnail').css('height', maxHeight);
-
                 if (data.length > 0) {
                     $('#pagerContainer').show();
                 }
@@ -199,4 +189,17 @@
             }
         });
     }
+
+    //$(window).resize(function() {
+    //    if ($(this).width() > 375) {
+    //        var maxHeight = "0px";
+    //        $('.box-comic .thumbnail  .caption h4').each(function () {
+    //            $this = $(this);
+    //            if ($this.css('height') > maxHeight) {
+    //                maxHeight = $this.css('height');
+    //            }
+    //        });
+    //    }
+    //    $('.box-comic .thumbnail .caption h4').css('height', maxHeight);
+    //});
 </script>
