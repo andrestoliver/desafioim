@@ -95,7 +95,7 @@ namespace imHeroesSearch.Util
                     character.Id = item.id;
                     character.Name = item.name;
                     character.Description = item.description;
-                    character.ThumbnailURL = item.thumbnail.path + "/portrait_incredible." + item.thumbnail.extension;
+                    character.ThumbnailURL = item.thumbnail.path + "/standard_fantastic." + item.thumbnail.extension;
                     characters.Add(character);
                 }
             }
@@ -128,6 +128,32 @@ namespace imHeroesSearch.Util
                 }
             }
             return comics;
+        }
+
+        public static Comic GetComicById(int id)
+        {
+            List<Comic> comics = new List<Comic>();
+            MarvelAuthorization auth = GetAuthorizationParams();
+
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                string requestURL = string.Format("{0}comics/{1}?ts={2}&apikey={3}&hash={4}", auth.BaseURL, id, auth.Ts, auth.PublicKey, auth.Hash);
+                HttpResponseMessage response = client.GetAsync(requestURL).Result;
+                response.EnsureSuccessStatusCode();
+
+                string content = response.Content.ReadAsStringAsync().Result;
+                dynamic result = JsonConvert.DeserializeObject(content);
+
+
+                Comic comic = new Comic();
+                comic.Id = result.data.results[0].id;
+                comic.Title = result.data.results[0].title;
+                comic.Description = result.data.results[0].description;
+                comic.ThumbnailURL = result.data.results[0].thumbnail.path + "." + result.data.results[0].thumbnail.extension;
+
+                return comic;
+            }
         }
 
         public static MarvelAuthorization GetAuthorizationParams()

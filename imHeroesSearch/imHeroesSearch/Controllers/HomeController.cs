@@ -16,17 +16,16 @@ namespace imHeroesSearch.Controllers
     {
         public ActionResult Index()
         {
-            //ViewBag.Characters = MarvelAPIUtil.GetCharacters();
-
             return View(MarvelAPIUtil.GetCharacters());
         }
 
         [HttpGet]
-        public JsonResult GetComics(int id)
+        public JsonResult GetComics(int id, int page)
         {
             List<ComicResponse> response = new List<ComicResponse>();
+            int offset = (page * 6)-1;
 
-            foreach (Comic item in MarvelAPIUtil.GetComics(id, 6, 0))
+            foreach (Comic item in MarvelAPIUtil.GetComics(id, 6, offset))
             {
                 ComicResponse responseItem = new ComicResponse();
 
@@ -44,6 +43,12 @@ namespace imHeroesSearch.Controllers
         public JsonResult GetCharacters(string term)
         {
             return Json(MarvelAPIUtil.GetCharactersByText(term), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetComic(int id)
+        {
+            return Json(MarvelAPIUtil.GetComicById(id), JsonRequestBehavior.AllowGet);
         }
     }
 }
